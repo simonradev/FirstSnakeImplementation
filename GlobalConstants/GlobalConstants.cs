@@ -6,6 +6,11 @@
 
     public static class GlobalConstants
     {
+        public static int MinimumColumnSize = 0;
+        public static int MaximumColumnlSize = Console.WindowWidth;
+        public static int MinimumRowSize = 0;
+        public static int MaximumRowSize = Console.WindowHeight;
+
         public const char SnakeBodyPart = '*';
         public const char SnakeFood = '@';
 

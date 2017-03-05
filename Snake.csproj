@@ -44,10 +44,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="EntryPoint.cs" />
+    <Compile Include="Excepions\GameOver.cs" />
     <Compile Include="GlobalConstants\GlobalConstants.cs" />
     <Compile Include="Position\Position.cs" />
     <Compile Include="Position\SnakeUpdate.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Validations\PositionCheck.cs" />
     <Compile Include="Visualizing\ConsoleDelayControl.cs" />
     <Compile Include="Visualizing\ItemsPrint.cs" />
   </ItemGroup>

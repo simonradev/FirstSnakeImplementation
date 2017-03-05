@@ -4,6 +4,7 @@
     using Position;
     using System.Collections.Generic;
     using GlobalConstants;
+    using Validation;
 
     public static class PrintItems
     {
@@ -14,6 +15,8 @@
         {
             foreach (Position currPosition in snake)
             {
+                PositionCheck.CheckIfSnakeCollidesIntoAWall(currPosition);
+
                 Console.SetCursorPosition(currPosition.Col, currPosition.Row);
                 Console.Write(GlobalConstants.SnakeBodyPart);
             }

@@ -2,16 +2,29 @@
 {
     using System.Collections.Generic;
     using System.Linq;
+    using Validation;
 
     public static class SnakeUpdate
     {
-        public static Queue<Position> UpdateTheSnake(Queue<Position> snake, Position newHeadPosition)
+        public static bool UpdateTheSnake(Queue<Position> snake, Position newHeadPosition)
         {
             Position head = snake.Last();
             snake.Dequeue();
-            snake.Enqueue(new Position(head.Row + newHeadPosition.Row, head.Col + newHeadPosition.Col));
+            Position newHead = new Position(head.Row + newHeadPosition.Row, head.Col + newHeadPosition.Col);
 
-            return snake;
+            PositionCheck.CheckIfSnakeCollidesIntoItself(snake, newHead);
+            bool snakeAteFood = PositionCheck.CheckIfTheSnakeHadSomeFood(newHead);
+
+            snake.Enqueue(newHead);
+
+            return snakeAteFood;
         } 
+
+        private static void MakeTheSnakeBiggerAfterItAteFood(Queue<Position> snake)
+        {
+            Position[] snakeHolder = snake.ToArray();
+
+
+        }
     }
 }

@@ -22,8 +22,7 @@
             PrintItems.PrintTheSnakeOnTheConsole(snake);
 
             Position nextDirection = AvaliableDirections.GetNeededPosition(ConsoleKey.RightArrow);
-            bool snakeIsAlive = true;
-            while (snakeIsAlive)
+            while (true)
             {
                 if (Console.KeyAvailable)
                 {
@@ -33,11 +32,17 @@
                 }
 
                 Console.Clear();
-
-                snake = SnakeUpdate.UpdateTheSnake(snake, nextDirection);
+                
+                //fix the method to return true or false for if the snake had some food or not
+                bool snakeAteTheFood = SnakeUpdate.UpdateTheSnake(snake, nextDirection);
 
                 PrintItems.PrintTheSnakeOnTheConsole(snake);
-                PrintItems.PrintSnakeFood(false);
+                PrintItems.PrintSnakeFood(snakeAteTheFood);
+
+                if (snakeAteTheFood)
+                {
+                    ConsoleDelayControl.FastenUpTheConsoleIfSnakeAteFood();
+                }
 
                 Thread.Sleep(ConsoleDelayControl.consoleDelay);
             }
