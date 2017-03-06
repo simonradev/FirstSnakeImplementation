@@ -6,7 +6,10 @@
 
         public static void FastenUpTheConsoleIfSnakeAteFood()
         {
-            consoleDelay -= 3;
+            if (consoleDelay >= 50)
+            {
+                consoleDelay -= 3;
+            }
         }
     }
 }
