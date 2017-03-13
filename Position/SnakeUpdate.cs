@@ -12,6 +12,8 @@
             Position newHead = new Position(head.Row + newHeadPosition.Row, head.Col + newHeadPosition.Col);
 
             PositionCheck.CheckIfSnakeCollidesIntoItself(snake, newHead);
+            PositionCheck.CheckIfSnakeCollidesIntoAWall(newHead);
+
             bool snakeAteFood = PositionCheck.CheckIfTheSnakeHadSomeFood(newHead);
 
             if (!snakeAteFood)

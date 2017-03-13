@@ -15,8 +15,6 @@
         {
             foreach (Position currPosition in snake)
             {
-                PositionCheck.CheckIfSnakeCollidesIntoAWall(currPosition);
-
                 Console.SetCursorPosition(currPosition.Col, currPosition.Row);
                 Console.Write(GlobalConstants.SnakeBodyPart);
             }
