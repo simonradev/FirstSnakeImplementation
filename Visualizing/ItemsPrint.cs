@@ -4,7 +4,6 @@
     using Position;
     using System.Collections.Generic;
     using GlobalConstants;
-    using Validation;
 
     public static class PrintItems
     {
@@ -29,6 +28,11 @@
 
             Console.SetCursorPosition(foodPosition.Col, foodPosition.Row);
             Console.Write(GlobalConstants.SnakeFood);
+        }
+
+        public static void PrintMessage(string message)
+        {
+            Console.WriteLine(message);
         }
     }
 }

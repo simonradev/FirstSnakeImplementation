@@ -12,7 +12,7 @@
         public GameOver(string message)
             : base(message)
         {
-            Console.WriteLine(message);
+
         }
     }
 }

@@ -6,6 +6,7 @@
     using Visualizing;
     using GlobalConstants;
     using System.Threading;
+    using Excepions;
 
     public class EntryPoint
     {
@@ -32,17 +33,21 @@
                 }
 
                 Console.Clear();
-                
-                //fix the method to return true or false for if the snake had some food or not
-                bool snakeAteTheFood = SnakeUpdate.UpdateTheSnake(snake, nextDirection);
+
+                bool snakeAteTheFood;
+                try
+                {
+                    snakeAteTheFood = SnakeUpdate.UpdateTheSnake(snake, nextDirection);
+                }
+                catch (GameOver goe)
+                {
+                    PrintItems.PrintMessage(goe.Message);
+
+                    return;
+                }
 
                 PrintItems.PrintTheSnakeOnTheConsole(snake);
                 PrintItems.PrintSnakeFood(snakeAteTheFood);
-
-                if (snakeAteTheFood)
-                {
-                    ConsoleDelayControl.FastenUpTheConsoleIfSnakeAteFood();
-                }
 
                 Thread.Sleep(ConsoleDelayControl.consoleDelay);
             }

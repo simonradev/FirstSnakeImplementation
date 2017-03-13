@@ -3,6 +3,7 @@
     using System.Collections.Generic;
     using System.Linq;
     using Validation;
+    using Visualizing;
 
     public static class SnakeUpdate
     {
@@ -19,6 +20,10 @@
             if (!snakeAteFood)
             {
                 snake.Dequeue();
+            }
+            else
+            {
+                ConsoleDelayControl.FastenUpTheConsoleIfSnakeAteFood();
             }
 
             snake.Enqueue(newHead);
