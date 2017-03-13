@@ -35,7 +35,7 @@
 
             if (snakeCollided)
             {
-                throw new GameOver("You tried to eat yourself... Be ashamed!!!");
+                throw new GameOver(GlobalConstants.SelfBiteExceptionMessage);
             }
         }
 
@@ -44,7 +44,7 @@
             if ((head.Row < GlobalConstants.MinimumRowSize || head.Row >= GlobalConstants.MaximumRowSize) ||
                 (head.Col < GlobalConstants.MinimumColumnSize || head.Col >= GlobalConstants.MaximumColumnlSize))
             {
-                throw new GameOver("You hit a wall!!!");
+                throw new GameOver(GlobalConstants.WallHitExceptionMessage);
             }
         }
     }

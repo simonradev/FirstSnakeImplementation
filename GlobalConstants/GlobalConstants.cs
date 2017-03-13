@@ -14,6 +14,9 @@
         public const char SnakeBodyPart = '*';
         public const char SnakeFood = '@';
 
+        public static string SelfBiteExceptionMessage = "You tried to eat yourself... Be ashamed!!!";
+        public static string WallHitExceptionMessage = "You hit a wall!!!";
+
         public static Queue<Position> InitializeTheSnake()
         {
             Queue<Position> snakeToReturn = new Queue<Position>();
