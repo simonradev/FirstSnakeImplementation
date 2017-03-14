@@ -22,5 +22,12 @@
             get { return this.col; }
             set { this.col = value; }
         }
+
+        public Position ToPosition()
+        {
+            Position toReturn = new Position(row, col);
+
+            return toReturn;
+        }
     }
 }

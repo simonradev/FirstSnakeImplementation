@@ -7,6 +7,7 @@
     using GlobalConstants;
     using System.Threading;
     using Excepions;
+    using Validation;
 
     public class EntryPoint
     {
@@ -23,6 +24,7 @@
             PrintItems.PrintTheSnakeOnTheConsole(snake);
 
             Position nextDirection = AvaliableDirections.GetNeededPosition(ConsoleKey.RightArrow);
+            Position oldDirection = AvaliableDirections.GetNeededPosition(ConsoleKey.RightArrow);
             while (true)
             {
                 if (Console.KeyAvailable)
@@ -30,6 +32,15 @@
                     ConsoleKeyInfo currMovement = Console.ReadKey();
 
                     nextDirection = AvaliableDirections.GetNeededPosition(currMovement);
+
+                    bool moveIsNotValid = PositionCheck.CheckIfTheMoveIsValid(nextDirection, oldDirection);
+
+                    if (moveIsNotValid)
+                    {
+                        nextDirection = oldDirection.ToPosition();
+                    }
+
+                    oldDirection = nextDirection.ToPosition();
                 }
 
                 Console.Clear();

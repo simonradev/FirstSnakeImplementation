@@ -8,6 +8,27 @@
 
     public static class PositionCheck
     {
+        public static bool CheckIfTheMoveIsValid(Position nextDirection, Position oldDirection)
+        {
+            bool isValid = true;
+
+            int[] positionElements = new int[2];
+            positionElements[0] = nextDirection.Row + oldDirection.Row;
+            positionElements[1] = nextDirection.Col + oldDirection.Col;
+
+            foreach (int element in positionElements)
+            {
+                if (element != 0)
+                {
+                    isValid = false;
+
+                    break;
+                }
+            }
+
+            return isValid;
+        }
+
         public static bool CheckIfTheSnakeHadSomeFood(Position newHead)
         {
             bool snakeAteFood = false;
