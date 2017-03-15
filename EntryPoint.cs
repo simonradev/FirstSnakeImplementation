@@ -52,7 +52,7 @@
                 }
                 catch (GameOver goe)
                 {
-                    PrintItems.PrintMessage(goe.Message);
+                    PrintItems.PrintFinalMessage(goe.Message, snake);
 
                     return;
                 }

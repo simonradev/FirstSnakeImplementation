@@ -30,9 +30,10 @@
             Console.Write(GlobalConstants.SnakeFood);
         }
 
-        public static void PrintMessage(string message)
+        public static void PrintFinalMessage(string message, Queue<Position> snake)
         {
             Console.WriteLine(message);
+            Console.WriteLine($"Current score: {snake.Count - 6}");
         }
     }
 }
