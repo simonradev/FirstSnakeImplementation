@@ -41,6 +41,23 @@
             return snakeAteFood;
         }
 
+        public static bool CheckIfFoodSpawnedOnAValidSpot(Queue<Position> snake, Position food)
+        {
+            bool toReturn = true;
+
+            foreach (Position bodyPart in snake)
+            {
+                if (bodyPart.Row == food.Row && bodyPart.Col == food.Col)
+                {
+                    toReturn = false;
+
+                    break;
+                }
+            }
+
+            return toReturn;
+        }
+
         public static void CheckIfSnakeCollidesIntoItself(Queue<Position> snake, Position newHead)
         {
             bool snakeCollided = false;

@@ -8,13 +8,18 @@
     using System.Threading;
     using Excepions;
     using Validation;
+    using HighScoreMenager;
 
     public class EntryPoint
     {
+        public static Queue<Position> snake;
+
         public static void Main()
         {
+            PlayAgain:
+
             //creating the first snake in the upper left corner with len of 5
-            Queue<Position> snake = new Queue<Position>();
+            snake = new Queue<Position>();
             snake = GlobalConstants.InitializeTheSnake();
             
             //setting the cursor to invisible so the game looks better
@@ -54,13 +59,24 @@
                 {
                     PrintItems.PrintFinalMessage(goe.Message, snake);
 
-                    return;
+                    goto End;
                 }
 
+                PrintItems.ScoreTracker(snake);
                 PrintItems.PrintTheSnakeOnTheConsole(snake);
-                PrintItems.PrintSnakeFood(snakeAteTheFood);
+                PrintItems.PrintSnakeFood(snake, snakeAteTheFood);
 
                 Thread.Sleep(ConsoleDelayControl.consoleDelay);
+            }
+
+            End:
+
+            HighScoreMenager.PrintCurrentTop3Players();
+
+            bool wantsToPlayAgain = PrintItems.AnotherGameQuestion();
+            if (wantsToPlayAgain)
+            {
+                goto PlayAgain;
             }
         }
     }

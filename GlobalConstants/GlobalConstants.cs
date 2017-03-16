@@ -8,7 +8,7 @@
     {
         public static int MinimumColumnSize = 0;
         public static int MaximumColumnlSize = Console.WindowWidth;
-        public static int MinimumRowSize = 0;
+        public static int MinimumRowSize = 2;
         public static int MaximumRowSize = Console.WindowHeight;
 
         public const char SnakeBodyPart = '*';
@@ -22,7 +22,7 @@
             Queue<Position> snakeToReturn = new Queue<Position>();
             for (int currCol = 0; currCol < 6; currCol++)
             {
-                snakeToReturn.Enqueue(new Position(0, currCol));
+                snakeToReturn.Enqueue(new Position(2, currCol));
             }
 
             return snakeToReturn;

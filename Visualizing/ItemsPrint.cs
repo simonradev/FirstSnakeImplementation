@@ -4,11 +4,14 @@
     using Position;
     using System.Collections.Generic;
     using GlobalConstants;
+    using HighScoreMenager;
+    using Validation;
 
     public static class PrintItems
     {
         public static Random rnd = new Random();
-        public static Position foodPosition = new Position(rnd.Next(0, Console.WindowHeight), rnd.Next(0, Console.WindowWidth));
+        public static Position foodPosition = new Position(rnd.Next(GlobalConstants.MinimumRowSize, GlobalConstants.MaximumRowSize),
+                                                           rnd.Next(GlobalConstants.MinimumColumnSize, GlobalConstants.MaximumColumnlSize));
 
         public static void PrintTheSnakeOnTheConsole(Queue<Position> snake)
         {
@@ -19,11 +22,20 @@
             }
         }
 
-        public static void PrintSnakeFood(bool generateNewFoodPlace)
+        public static void PrintSnakeFood(Queue<Position> snake, bool generateNewFoodPlace)
         {
             if (generateNewFoodPlace)
             {
-                foodPosition = new Position(rnd.Next(0, Console.WindowHeight), rnd.Next(0, Console.WindowWidth));
+                SpawnTheFoodAgain:
+
+                foodPosition = new Position(rnd.Next(GlobalConstants.MinimumRowSize, GlobalConstants.MaximumRowSize),
+                                            rnd.Next(GlobalConstants.MinimumColumnSize, GlobalConstants.MaximumColumnlSize));
+
+                bool spotIsValid = PositionCheck.CheckIfFoodSpawnedOnAValidSpot(snake, foodPosition);
+                if (!spotIsValid)
+                {
+                    goto SpawnTheFoodAgain;
+                }
             }
 
             Console.SetCursorPosition(foodPosition.Col, foodPosition.Row);
@@ -33,7 +45,58 @@
         public static void PrintFinalMessage(string message, Queue<Position> snake)
         {
             Console.WriteLine(message);
-            Console.WriteLine($"Current score: {snake.Count - 6}");
+            Console.WriteLine($"Current score: {HighScoreMenager.currentScore}");
+        }
+
+        public static void ScoreTracker(Queue<Position> snake)
+        {
+            string score = $"{snake.Count - 6}".PadLeft(5);
+            Console.WriteLine($"{score}|");
+
+            string dashes = new string('-', Console.BufferWidth);
+            Console.WriteLine($"{dashes}");
+        }
+
+        public static bool AnotherGameQuestion()
+        {
+            Console.CursorVisible = true;
+            Console.Write("Do you want to play again ( Y / N ): ");
+
+            bool willDisplayTryAgainMessage = false;
+            TryAgain:
+
+            if (willDisplayTryAgainMessage)
+            {
+                Console.Write("Wrong input! Please try again with ( Y / N ): ");
+            }
+
+            string answer;
+            try
+            {
+                answer = char.Parse(Console.ReadLine()).ToString().ToLower();
+            }
+            catch (FormatException)
+            {
+                willDisplayTryAgainMessage = true;
+
+                goto TryAgain;
+            }
+
+            Console.CursorVisible = false;
+
+            if (answer == "y")
+            {
+                return true;
+            }
+            else if (answer == "n")
+            {
+                return false;
+            }
+            else
+            {
+                willDisplayTryAgainMessage = true;
+                goto TryAgain;
+            }
         }
     }
 }

@@ -46,6 +46,7 @@
     <Compile Include="EntryPoint.cs" />
     <Compile Include="Excepions\GameOver.cs" />
     <Compile Include="GlobalConstants\GlobalConstants.cs" />
+    <Compile Include="HighScoreMenager\HighScoreMenager.cs" />
     <Compile Include="Position\Position.cs" />
     <Compile Include="Position\SnakeUpdate.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
