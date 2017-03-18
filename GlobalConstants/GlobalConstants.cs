@@ -16,6 +16,11 @@
         public const string HighScoreTableBorder = "--------------------";
         public const string HighScoreTableTitle = "HIGH SCORE TABLE!!!";
 
+        public const string DoYouWantToPlayAgainMessage = "Do you want to play again ( Y / N ): ";
+        public const string WrongAnswerMessage = "Wrong input! Please try again with ( Y / N ): ";
+        public const string AgreeAnswer = "y";
+        public const string DeclinedAnswer = "n";
+
         public static int MinimumColumnSize = 0;
         public static int MaximumColumnlSize = Console.WindowWidth;
         public static int MinimumRowSize = 2;

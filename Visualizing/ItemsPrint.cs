@@ -6,6 +6,7 @@
     using GlobalConstants;
     using HighScoreMenager;
     using Validation;
+    using System.Text;
 
     public static class PrintItems
     {
@@ -50,24 +51,28 @@
 
         public static void ScoreTracker()
         {
-            string score = $"{HighScoreMenager.currentScore}".PadLeft(5);
-            Console.WriteLine($"{score}|");
+            StringBuilder printResult = new StringBuilder();
 
-            string dashes = new string('-', Console.BufferWidth);
-            Console.WriteLine($"{dashes}");
+            string score = $"{HighScoreMenager.currentScore}".PadLeft(5);
+            printResult.AppendLine($"{score}|");
+
+            string border = new string('-', GlobalConstants.MaximumColumnlSize);
+            printResult.Append(border);
+
+            Console.WriteLine(printResult.ToString());
         }
 
         public static bool AnotherGameQuestion()
         {
             Console.CursorVisible = true;
-            Console.Write("Do you want to play again ( Y / N ): ");
+            Console.Write(GlobalConstants.DoYouWantToPlayAgainMessage);
 
             bool willDisplayTryAgainMessage = false;
             TryAgain:
 
             if (willDisplayTryAgainMessage)
             {
-                Console.Write("Wrong input! Please try again with ( Y / N ): ");
+                Console.Write(GlobalConstants.WrongAnswerMessage);
             }
 
             string answer;
@@ -84,11 +89,11 @@
 
             Console.CursorVisible = false;
 
-            if (answer == "y")
+            if (answer == GlobalConstants.AgreeAnswer)
             {
                 return true;
             }
-            else if (answer == "n")
+            else if (answer == GlobalConstants.DeclinedAnswer)
             {
                 return false;
             }
