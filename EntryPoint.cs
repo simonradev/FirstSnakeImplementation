@@ -62,7 +62,8 @@
                     goto End;
                 }
 
-                PrintItems.ScoreTracker(snake);
+                HighScoreMenager.UpdateTheCurrentScore(snake);
+                PrintItems.ScoreTracker();
                 PrintItems.PrintTheSnakeOnTheConsole(snake);
                 PrintItems.PrintSnakeFood(snake, snakeAteTheFood);
 
@@ -71,7 +72,7 @@
 
             End:
 
-            HighScoreMenager.PrintCurrentTop3Players();
+            HighScoreMenager.CheckIfThereIsANewHighscoreAndUpdate();
 
             bool wantsToPlayAgain = PrintItems.AnotherGameQuestion();
             if (wantsToPlayAgain)

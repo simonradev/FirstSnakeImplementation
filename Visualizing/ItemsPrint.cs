@@ -48,9 +48,9 @@
             Console.WriteLine($"Current score: {HighScoreMenager.currentScore}");
         }
 
-        public static void ScoreTracker(Queue<Position> snake)
+        public static void ScoreTracker()
         {
-            string score = $"{snake.Count - 6}".PadLeft(5);
+            string score = $"{HighScoreMenager.currentScore}".PadLeft(5);
             Console.WriteLine($"{score}|");
 
             string dashes = new string('-', Console.BufferWidth);

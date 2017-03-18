@@ -6,11 +6,22 @@
 
     public static class GlobalConstants
     {
+        public const string HighscoresPath = "..\\..\\HighScores.txt";
+        public static readonly string[] InitialPlayers = new string[] { "unknown1: 0", "unknown2: 0", "unknown3: 0" };
+
+        public const string NewHighScoreMessage = "Congradulations you scored a new HIGH SCORE!!!";
+        public const string EnterYourNameMessage = "Enter your name (Atleast 3 symbols long!): ";
+        public const string NotEnoughLongErrorMessage = "Not enough long!!! Please try again (Atleast 3 symbols long!): ";
+        public const string NameAlreadyExistsErrorMessage = "The name already exists!!! Please try again (Atleast 3 symbols long!): ";
+        public const string HighScoreTableBorder = "--------------------";
+        public const string HighScoreTableTitle = "HIGH SCORE TABLE!!!";
+
         public static int MinimumColumnSize = 0;
         public static int MaximumColumnlSize = Console.WindowWidth;
         public static int MinimumRowSize = 2;
         public static int MaximumRowSize = Console.WindowHeight;
 
+        public const int InitialSnakeLenght = 6;
         public const char SnakeBodyPart = '*';
         public const char SnakeFood = '@';
 
@@ -20,7 +31,7 @@
         public static Queue<Position> InitializeTheSnake()
         {
             Queue<Position> snakeToReturn = new Queue<Position>();
-            for (int currCol = 0; currCol < 6; currCol++)
+            for (int currCol = 0; currCol < InitialSnakeLenght; currCol++)
             {
                 snakeToReturn.Enqueue(new Position(2, currCol));
             }
